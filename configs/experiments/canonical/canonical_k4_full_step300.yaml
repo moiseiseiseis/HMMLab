@@ -1,0 +1,34 @@
+experiment:
+  name: "canonical_k4_full_step300"
+  pipeline_type: "feature"
+  seed: 42
+
+# Experimento de validacion de robustez:
+# step=300ms elimina el overlap entre ventanas (window=step).
+# Reduce ventanas de ~21,000 a ~7,000 pero garantiza
+# independencia condicional entre observaciones del HMM.
+windowing:
+  window_ms: 300
+  step_ms:   300
+  edge_trim: 1
+
+paths:
+  features_dir: "data/interim/features/task_step300/"
+  output_dir:   "outputs/experiments/canonical/"
+
+features:
+  use_theta:   true
+  use_alpha:   true
+  use_beta:    true
+  use_hjorth:  true
+  use_entropy: false
+
+pipeline:
+  pca:
+    variance_retained: 0.90
+
+  hmm:
+    k_states:        4
+    covariance_type: "full"
+    n_iter:          500
+    tol:             0.001

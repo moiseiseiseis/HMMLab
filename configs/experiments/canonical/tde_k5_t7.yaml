@@ -1,0 +1,23 @@
+experiment:
+  name: "tde_k5_t7"
+  pipeline_type: "tde"
+  seed: 42
+
+tde:
+  n_lags:   7
+  lag_step: 1
+  sfreq:    250.0
+
+paths:
+  fif_dir:    "C:/Users/pokem/OneDrive/Desktop/lab 2026/EEG_Preprocesado_GoNoGo"
+  output_dir: "outputs/experiments/canonical/"
+
+pipeline:
+  pca:
+    variance_retained: 0.90
+
+  hmm:
+    k_states:        5
+    covariance_type: "full"
+    n_iter:          500
+    tol:             0.001
