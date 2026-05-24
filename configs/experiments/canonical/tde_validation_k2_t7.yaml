@@ -1,0 +1,31 @@
+experiment:
+  name: "tde_validation_k2_t7"
+  pipeline_type: "tde"
+  seed: 42
+
+# Validación mínima local — 2 sujetos, K=2, t=7
+# Objetivo: verificar que el pipeline corre end-to-end sin errores
+# NO es un experimento científico — solo smoke test
+
+tde:
+  n_lags:   7
+  lag_step: 1
+  sfreq:    250.0
+
+  # Límite de archivos para validación local
+  # El script leerá solo los primeros n_subjects_limit archivos
+  n_subjects_limit: 2
+
+paths:
+  fif_dir:    "C:/Users/pokem/OneDrive/Desktop/lab 2026/EEG_Preprocesado_GoNoGo"
+  output_dir: "outputs/experiments/validation/"
+
+pipeline:
+  pca:
+    variance_retained: 0.90
+
+  hmm:
+    k_states:        2
+    covariance_type: "full"
+    n_iter:          100
+    tol:             0.01

@@ -1,0 +1,30 @@
+experiment:
+  name: "tde_k4_t15"
+  pipeline_type: "tde"
+  seed: 42
+
+# ── Parámetros TDE ──────────────────────────────────────────────────────────
+# n_lags=15 cubre ~60ms de estructura temporal (vs ~28ms con t=7)
+# Dimensión resultante: 19 × 16 = 304D antes de PCA
+# Más contexto temporal → mejor separación de estados oscilatorios lentos
+# Costo: más memoria y tiempo de embedding
+tde:
+  n_lags:   15
+  lag_step: 1
+  sfreq:    250.0
+
+# ── Rutas ────────────────────────────────────────────────────────────────────
+paths:
+  fif_dir:    "C:/Users/pokem/OneDrive/Desktop/lab 2026/EEG_Preprocesado_GoNoGo"
+  output_dir: "outputs/experiments/canonical/"
+
+# ── Pipeline ──────────────────────────────────────────────────────────────────
+pipeline:
+  pca:
+    variance_retained: 0.90
+
+  hmm:
+    k_states:        4
+    covariance_type: "full"
+    n_iter:          500
+    tol:             0.001

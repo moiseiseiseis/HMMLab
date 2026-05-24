@@ -1,0 +1,101 @@
+experiment:
+  name: "feat_task_k3_diag_pca90_hjorthonly_temporalqc"
+  seed: 42
+
+# ============================================================
+# WINDOWING
+# ============================================================
+
+windowing:
+  window_ms: 300
+  step_ms: 100
+  edge_trim: 1
+
+# ============================================================
+# PATHS
+# ============================================================
+
+paths:
+
+  # Nuevo directorio para evitar contaminar
+  # features previas
+
+  features_dir: "../../data/interim/features/task_hjorthonly_temporalqc/"
+
+  output_dir: "../../outputs/processed/experiments/feature_hmm/task/"
+
+# ============================================================
+# FEATURE FLAGS
+# ============================================================
+
+features:
+
+  # ----------------------------------------------------------
+  # SPECTRAL FEATURES
+  # ----------------------------------------------------------
+
+  use_theta: false
+  use_alpha: false
+  use_beta: false
+
+  # ----------------------------------------------------------
+  # TEMPORAL FEATURES
+  # ----------------------------------------------------------
+
+  use_hjorth: true
+
+  # ----------------------------------------------------------
+  # ENTROPY
+  # ----------------------------------------------------------
+
+  # Desactivada temporalmente
+  # para aislar problemas geométricos
+
+  use_entropy: false
+
+# ============================================================
+# PIPELINE
+# ============================================================
+
+pipeline:
+
+  # ==========================================================
+  # PCA
+  # ==========================================================
+
+  pca:
+
+    # Mantener 90% inicialmente
+    # para comparabilidad con experimentos previos
+
+    variance_retained: 0.90
+
+    # Muy importante:
+    # evita escalamiento agresivo
+    # de componentes pequeños
+
+    whiten: false
+
+  # ==========================================================
+  # HMM
+  # ==========================================================
+
+  hmm:
+
+    # El mismo K
+    # para comparabilidad limpia
+
+    k_states: 3
+
+    # Mantener diag primero
+    # para aislar variables
+
+    covariance_type: "diag"
+
+    # Más que suficiente
+
+    n_iter: 500
+
+    # Convergencia más estable
+
+    tol: 0.001

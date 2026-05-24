@@ -1,0 +1,51 @@
+# configs/features/task_mega_vector.yaml
+# ============================================================
+# WINDOWING
+# ============================================================
+
+windowing:
+
+  # Mucho más estable para:
+  # - theta
+  # - alpha
+  # - entropy
+  # - Hjorth
+  # - HMM temporal
+
+  window_size_ms: 300
+
+  # Reduce autocorrelación artificial
+  # overlap ≈ 66%
+
+  step_size_ms: 100
+
+  # Elimina ventanas frontera
+  # potencialmente corruptas
+
+  edge_trim_windows: 1
+
+# ============================================================
+# FREQUENCY BANDS
+# ============================================================
+
+bands:
+
+  theta: [4.0, 8.0]
+  alpha: [8.0, 13.0]
+  beta:  [13.0, 30.0]
+
+# ============================================================
+# FEATURES
+# ============================================================
+
+# EXPERIMENTO DIAGNÓSTICO:
+# SOLO HJORTH
+#
+# Objetivo:
+# reducir ruido espectral y verificar
+# si el estado residual persiste.
+
+features:
+
+  - "hjorth_mobility"
+  - "hjorth_complexity"

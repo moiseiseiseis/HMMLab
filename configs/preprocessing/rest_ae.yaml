@@ -1,0 +1,21 @@
+global:
+  sfreq: 500
+  target_sfreq: 250
+
+preprocessing:
+
+  paradigm: "resting"
+  model: "ae_hmm"
+
+  reference: "average"
+
+  filtering:
+    highpass: 1.0
+    lowpass: 45.0
+    notch: 60
+
+  resampling:
+    downsample: 250
+
+  artifact_removal:
+    ica: false

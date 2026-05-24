@@ -1,0 +1,31 @@
+experiment:
+  name: "canonical_k4_full_relpow"
+  seed: 42
+
+windowing:
+  window_ms: 300
+  step_ms: 100
+  edge_trim: 1
+
+paths:
+  features_dir: "data/interim/features/task_relpow/"
+  output_dir: "outputs/experiments/canonical/"
+
+features:
+  use_theta:          true
+  use_alpha:          true
+  use_beta:           true
+  use_hjorth:         true
+  use_entropy:        false
+  use_relative_power: true
+  use_band_ratios:    false
+  use_asymmetry:      false
+
+pipeline:
+  pca:
+    variance_retained: 0.90
+  hmm:
+    k_states: 4
+    covariance_type: "full"
+    n_iter: 500
+    tol: 0.001

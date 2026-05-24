@@ -1,0 +1,80 @@
+# ============================================================
+# FEATURE-HMM TASK
+# EXPERIMENTO COMPLETO:
+# BANDAS + HJORTH + ENTROPÍA
+# ============================================================
+
+experiment:
+  name: "feat_task_k4_diag_pca90_fullfeatures_v2"
+  seed: 42
+
+# ============================================================
+# WINDOWING
+# ============================================================
+
+windowing:
+  window_ms: 300
+  step_ms: 100
+  edge_trim: 1
+
+# ============================================================
+# PATHS
+# ============================================================
+
+paths:
+
+  # Features completas
+  features_dir: "../../data/interim/features/task_fullfeatures_v2/"
+
+  # Output general del experimento
+  output_dir: "../../outputs/processed/experiments/feature_hmm/task/"
+
+# ============================================================
+# FEATURE FLAGS
+# ============================================================
+
+features:
+
+  # ----------------------------------------------------------
+  # BANDAS ESPECTRALES
+  # ----------------------------------------------------------
+  use_theta: true
+  use_alpha: true
+  use_beta: true
+
+  # ----------------------------------------------------------
+  # HJORTH
+  # ----------------------------------------------------------
+  use_hjorth: true
+
+  # ----------------------------------------------------------
+  # COMPLEJIDAD
+  # ----------------------------------------------------------
+  use_entropy: true
+
+# ============================================================
+# PCA
+# ============================================================
+
+pipeline:
+
+  pca:
+
+    # Mantener 90% como baseline experimental
+    variance_retained: 0.90
+
+  # ==========================================================
+  # HMM
+  # ==========================================================
+
+  hmm:
+
+    # K experimental
+    k_states: 4
+
+    # IMPORTANTE:
+    # Mantener diag primero para comparabilidad
+    covariance_type: "diag"
+
+    # Más iteraciones por estabilidad
+    n_iter: 500

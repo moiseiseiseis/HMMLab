@@ -1,0 +1,32 @@
+
+
+project_root: "C:/Users/pokem/OneDrive/Desktop/Dexter-lab"
+
+data:
+  raw:
+    resting: "data/raw/resting"
+    task: "data/raw/task"
+
+  interim:
+    preprocessed: "data/interim/preprocessed"
+    epochs: "data/interim/epochs"
+    tde: "data/interim/tde"
+    features: "data/interim/features"
+    pca: "data/interim/pca"
+
+  processed:
+    datasets: "data/processed/datasets"
+    models: "data/processed/models"
+    results: "data/processed/results"
+
+outputs:
+  figures: "outputs/figures"
+  tables: "outputs/tables"
+  reports: "outputs/reports"
+  checkpoints: "outputs/checkpoints"
+
+logs:
+  root: "logs"
+
+slurm:
+  root: "slurm"

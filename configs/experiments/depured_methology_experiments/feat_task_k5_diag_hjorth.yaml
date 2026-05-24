@@ -1,0 +1,74 @@
+experiment:
+  # 1. CAMBIO CLAVE: El nombre debe coincidir con el archivo
+  name: "feat_task_k5_diag_hjorth"
+  seed: 42
+
+# ============================================================
+# WINDOWING
+# ============================================================
+
+windowing:
+  window_ms: 300
+  step_ms: 100
+  edge_trim: 1
+
+# ============================================================
+# PATHS
+# ============================================================
+
+paths:
+
+  # Usamos la MISMA carpeta de características.
+  # Así no calculamos Hjorth dos veces, ¡reutiliza los datos ya extraídos!
+  features_dir: "../../data/interim/features/task_hjorthonly_temporalqc/"
+  output_dir: "../../outputs/processed/experiments/feature_hmm/task/"
+
+# ============================================================
+# FEATURE FLAGS
+# ============================================================
+
+features:
+
+  # ----------------------------------------------------------
+  # SPECTRAL FEATURES
+  # ----------------------------------------------------------
+  use_theta: true
+  use_alpha: true
+  use_beta: true
+
+  # ----------------------------------------------------------
+  # TEMPORAL FEATURES
+  # ----------------------------------------------------------
+  use_hjorth: true
+
+  # ----------------------------------------------------------
+  # ENTROPY
+  # ----------------------------------------------------------
+  use_entropy: false
+
+# ============================================================
+# PIPELINE
+# ============================================================
+
+pipeline:
+
+  # ==========================================================
+  # PCA
+  # ==========================================================
+
+  pca:
+    # Mantenemos 90% para que el espacio geométrico sea idéntico
+    variance_retained: 0.90
+    whiten: false
+
+  # ==========================================================
+  # HMM
+  # ==========================================================
+
+  hmm:
+    # 2. CAMBIO CLAVE: Obligar al modelo a buscar 5 cajas
+    k_states: 5
+    
+    covariance_type: "diag"
+    n_iter: 500
+    tol: 0.001

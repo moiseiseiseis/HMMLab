@@ -1,0 +1,15 @@
+windowing:
+  window_size_ms: 100
+  step_size_ms: 20
+  fs: 250 # Frecuencia que nos dejó el preprocesamiento
+
+bands:
+  theta: [4, 8]
+  alpha: [8, 13]
+  beta: [13, 30]
+
+features:
+  - bandpower
+  - hjorth_mobility
+  - hjorth_complexity
+  - spectral_entropy

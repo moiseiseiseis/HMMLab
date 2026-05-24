@@ -1,0 +1,51 @@
+# configs/preprocessing/task_feature_hmm.yaml
+global:
+  sfreq: 500
+  target_sfreq: 250
+
+preprocessing:
+  paradigm: "task"
+  model: "feature_hmm"
+
+  # ==========================================================
+  # REFERENCING
+  # ==========================================================
+
+  reference:
+    type: "average"
+
+  # ==========================================================
+  # FILTERING
+  # ==========================================================
+
+  filtering:
+    highpass: null
+    lowpass: 30.0
+    notch: null
+    method: "fir"
+    phase: "zero"
+
+  # ==========================================================
+  # RESAMPLING
+  # ==========================================================
+
+  resampling:
+    apply: true
+    target: 250
+
+  # ==========================================================
+  # ARTIFACT CONTROL
+  # ==========================================================
+
+  artifact_removal:
+    ica: false
+
+    # Reject epochs above 500 µV
+    eeg_limit: 500e-6
+
+  # ==========================================================
+  # EPOCHING
+  # ==========================================================
+
+  epoching:
+    baseline_correct: true

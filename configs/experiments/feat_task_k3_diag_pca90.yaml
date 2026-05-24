@@ -1,0 +1,20 @@
+experiment:
+  name: "feat_task_k3_diag_pca90"
+  seed: 42
+
+windowing:
+  window_ms: 300
+  step_ms: 100
+  edge_trim: 1
+
+paths:
+  features_dir: "data/interim/features/task/"
+  output_dir: "outputs/processed/experiments/feature_hmm/task/"
+
+pipeline:
+  pca:
+    variance_retained: 0.90
+  hmm:
+    k_states: 3
+    covariance_type: "diag"
+    n_iter: 500

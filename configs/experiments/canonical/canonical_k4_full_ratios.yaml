@@ -1,0 +1,31 @@
+experiment:
+  name: "canonical_k4_full_ratios"
+  seed: 42
+
+windowing:
+  window_ms: 300
+  step_ms: 100
+  edge_trim: 1
+
+paths:
+  features_dir: "data/interim/features/task_ratios/"
+  output_dir: "outputs/experiments/canonical/"
+
+features:
+  use_theta:          true
+  use_alpha:          true
+  use_beta:           true
+  use_hjorth:         true
+  use_entropy:        false
+  use_relative_power: false
+  use_band_ratios:    true
+  use_asymmetry:      true
+
+pipeline:
+  pca:
+    variance_retained: 0.90
+  hmm:
+    k_states: 4
+    covariance_type: "full"
+    n_iter: 500
+    tol: 0.001

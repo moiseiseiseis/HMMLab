@@ -1,0 +1,71 @@
+# datos y outputs
+data/
+outputs/
+logs/
+
+# figuras generadas
+reports/figures/
+
+# modelos y arrays numpy
+*.pkl
+*.npy
+*.fif
+*.set
+*.edf
+*.bdf
+*.cnt
+*.vhdr
+*.vmrk
+
+# archivos de experimento grandes
+*.h5
+*.hdf5
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+.pytest_cache/
+
+# jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# entornos
+.env
+.venv
+env/
+venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# carpeta de staging (ya integrada al proyecto)
+tde_pipeline/
+
+# archivos temporales del pipeline
+*.json.tmp
+run_*.json
+
+# logs de slurm
+slurm-*.out
+slurm-*.err
+*.log
+# archivos temporales de desarrollo
+.claude/
+write_cli.py
+structure.md
+notebooks/exploratory/plots/*.png

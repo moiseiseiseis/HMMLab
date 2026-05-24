@@ -1,0 +1,29 @@
+experiment:
+  name: "tde_k4_t7"
+  pipeline_type: "tde"
+  seed: 42
+
+# ── Parámetros TDE ──────────────────────────────────────────────────────────
+# Time-Delay Embedding: concatena la señal con n_lags versiones desplazadas.
+# Oxford estándar para paradigmas cognitivos a 250Hz: n_lags=7, lag_step=1
+# Dimensión resultante: n_channels × (n_lags + 1) = 19 × 8 = 152D
+tde:
+  n_lags:   7       # número de lags temporales (Oxford: 7)
+  lag_step: 1       # paso entre lags en muestras (1 = cada muestra, ~4ms a 250Hz)
+  sfreq:    250.0   # frecuencia de muestreo de los datos TDE (para cálculo de dwell_ms)
+
+# ── Rutas ────────────────────────────────────────────────────────────────────
+paths:
+  fif_dir:    "C:/Users/pokem/OneDrive/Desktop/lab 2026/EEG_Preprocesado_GoNoGo"
+  output_dir: "outputs/experiments/canonical/"
+
+# ── Pipeline ──────────────────────────────────────────────────────────────────
+pipeline:
+  pca:
+    variance_retained: 0.90
+
+  hmm:
+    k_states:        4
+    covariance_type: "full"
+    n_iter:          500
+    tol:             0.001

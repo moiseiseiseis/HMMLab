@@ -1,0 +1,33 @@
+# configs/experiments/feat_task_k3_diag_pca90_bandsonly.yaml
+
+experiment:
+  name: "feat_task_k3_diag_pca90_bandsonly"
+  seed: 42
+
+windowing:
+  window_ms: 300
+  step_ms: 100
+  edge_trim: 1
+
+paths:
+  # CRÍTICO: Nueva carpeta para salvar las dimensiones truncadas (Solo 3 bandas x 19 canales = 57 dims)
+  features_dir: "../../data/interim/features/task_bandsonly/"
+  output_dir: "../../outputs/processed/experiments/feature_hmm/task/"
+
+# === EL CEREBRO DEL EXPERIMENTO ===
+features:
+  use_theta: true
+  use_alpha: true
+  use_beta: true
+  
+  # ABLACIÓN: Apagamos las métricas complejas
+  use_hjorth: false
+  use_entropy: false
+
+pipeline:
+  pca:
+    variance_retained: 0.90
+  hmm:
+    k_states: 3
+    covariance_type: "diag"
+    n_iter: 500
